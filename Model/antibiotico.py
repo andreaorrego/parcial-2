@@ -1,57 +1,68 @@
-import producto as Productos
+from Model.producto import Producto, Tipo_producto
 
 class Animal:
     BOVINO = "Bovino"
-    PORCINOS = "Porcinos"
-    CARPINOS = "Carpinos"
+    PORCINO = "Porcino"
+    CARPINO = "Carpino"
 
 class Antibiotico:
-    def __init__ (self, producto: Productos):
-        self.nombre_antibiotico: str = ""
-        self._dosis: float = 0.0
-        self._tipo_animal: str = ""  
-        self._precio : float = 0.0
+    def __init__(self, producto: Producto):
+        if producto.tipo_producto != Tipo_producto.ANTIBIOTICO:
+            raise TypeError("El producto debe ser un antibiótico")
+        self.producto = producto
+        self._peso: float = 0.0
+        self._tipo_animal: str = "" 
+
+    @property
+    def nombre_producto(self):
+        return self.producto.nombre_producto
+
+    @property
+    def registro_ICA(self):
+        return self.producto.registro_ICA
 
     @property
     def dosis(self):
-        return self._dosis
+        return self.producto.dosis
     
-    @dosis.setter
-    def dosis(self, valor):
-        if not (400 <= valor <= 600):
-            raise ValueError("La dosis debe estar entre 400 y 600 mg/kg")
-        self._dosis = valor
-
+    @property
+    def concentracion(self):
+        return self.producto.concentracion
+    
+    @property
+    def frecuencia_aplicacion(self):
+        return self.producto.frecuencia_aplicacion
+    
     @property
     def tipo_animal(self):
         return self._tipo_animal
     
     @tipo_animal.setter
     def tipo_animal(self, valor):
-        if valor not in ["Bovino", "Porcinos", "Carpinos"]:
-            raise ValueError("Tipo de animal inválido")
+        if valor not in [Animal.BOVINO, Animal.PORCINO, Animal.CARPINO]:
+            raise ValueError("Tipo de animal no válido")
         self._tipo_animal = valor
 
     @property
-    def precio(self):
-        return self._precio
+    def peso(self):
+        return self._peso
     
-    @precio.setter
-    def precio(self, valor):
-        if valor <= 0:
-            raise ValueError("El precio no puede ser negativo")
-        self._precio = valor
+    @peso.setter
+    def peso(self, valor):
+        if not (400 <= valor <= 600):
+            raise ValueError("El peso debe de estar entre 400 y 600 kg")
+        self._peso = valor
 
-
-cliente1 = Antibiotico(Productos)
-cliente1.nombre_antibiotico = "Amoxicilina"
-cliente1.dosis = 500
-cliente1.tipo_animal = Animal.BOVINO
-cliente1.precio = 15000
-
-
-print ("Nombre antibiotico ", cliente1.nombre_antibiotico)
-print ("dosis: ", cliente1.dosis)
-print ("Tipo de animal: ", cliente1.tipo_animal)
-print ("Precio: ", cliente1.precio)
-
+    @property
+    def valor_producto(self):
+        return self.producto.valor_producto
+    
+    def calcular_dosis(self):
+        if self.tipo_animal == Animal.BOVINO:
+            return (self.peso * self.producto.dosis) / self.producto.concentracion
+        elif self.tipo_animal == Animal.PORCINO:
+            return (self.peso * self.producto.dosis) / self.producto.concentracion
+        elif self.tipo_animal == Animal.CARPINO:
+            return (self.peso * self.producto.dosis) / self.producto.concentracion
+        else:
+            raise ValueError("Tipo de animal no válido para calcular la dosis")
