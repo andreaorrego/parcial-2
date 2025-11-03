@@ -9,7 +9,6 @@ class Antibiotico:
     def __init__(self, producto: Producto):
         if producto.tipo_producto != Tipo_producto.ANTIBIOTICO:
             raise TypeError("El producto debe ser un antibiótico")
-        self.producto = producto
         self._peso: float = 0.0
         self._tipo_animal: str = "" 
 

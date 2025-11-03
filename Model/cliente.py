@@ -3,3 +3,4 @@ class Clientes:
         self.nombre_cliente = nombre_cliente
         self.cedula = cedula
         self.celular = celular
+

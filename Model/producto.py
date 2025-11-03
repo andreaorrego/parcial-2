@@ -16,7 +16,8 @@ class Frecuencia_aplicacion:
 
 @dataclass
 class Producto:
-    def __init__(self, nombre_producto, registro_ICA, frecuencia_aplicacion, dosis, concentracion, tipo_producto, valor_producto):
+    def __init__(self, nombre_producto, registro_ICA, frecuencia_aplicacion, dosis, 
+                 concentracion, tipo_producto, valor_producto):
         self.nombre_producto = nombre_producto
         self.registro_ICA = registro_ICA
         self.frecuencia_aplicacion = frecuencia_aplicacion
