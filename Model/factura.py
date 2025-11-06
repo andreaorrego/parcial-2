@@ -1,6 +1,4 @@
 from Model.cliente import Clientes
-from Model.producto import Producto, Control_Fertilizantes, Control_Plagas
-from Model.antibiotico import Antibiotico
 from datetime import date
 
 class Factura:
@@ -9,6 +7,8 @@ class Factura:
         self.productos = []
         self.valor_factura: float = 0.0
         self.cliente = cliente
+    
+        cliente.agregar_factura(self)
         
     def agregar_producto(self, producto):
         self.productos.append(producto)
@@ -22,5 +22,6 @@ class Factura:
             else:
                 total += float(item.valor_producto)
         self.valor_factura = total
+
 
         
