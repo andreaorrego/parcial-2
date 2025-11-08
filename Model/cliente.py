@@ -1,4 +1,5 @@
-from factura import Factura 
+import sys, os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 class Clientes:
     def __init__(self, nombre_cliente, cedula):
@@ -25,4 +26,6 @@ class Clientes:
         return self.__facturas
 
     def agregar_factura(self, factura):
-        self.__facturas.append(factura)
+        from Model.factura import Factura 
+        if isinstance(factura, Factura):
+            self.__facturas.append(factura)

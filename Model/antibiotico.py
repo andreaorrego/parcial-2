@@ -1,12 +1,20 @@
+import sys, os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from Model.producto import Producto, Tipo_producto
 from Model.constantes import Tipo_producto, Animal
 
-class Antibiotico:
+class Antibiotico (Producto):
     def __init__(self, producto: Producto):
         if producto.tipo_producto != Tipo_producto.ANTIBIOTICO:
             raise TypeError("El producto debe ser un antibiótico")
-        super().__init__(producto.nombre_producto, producto.registro_ICA, producto.frecuencia_aplicacion, 
-                         producto.dosis, producto.concentracion, producto.tipo_producto, producto.valor_producto)
+        super().__init__(producto.nombre_producto, 
+                          producto.registro_ICA, 
+                          producto.frecuencia_aplicacion, 
+                          producto.dosis, 
+                          producto.concentracion, 
+                          producto.tipo_producto, 
+                          producto.valor_producto)
+        
         self.__peso: float = 0.0
         self.__tipo_animal: str = "" 
     

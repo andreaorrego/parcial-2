@@ -1,11 +1,20 @@
+import sys, os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from Model.producto import Producto, Tipo_producto, Frecuencia_aplicacion
 
 class Control_Plagas(Producto):
     def __init__(self, producto: Producto, periodo_carencia):
         if producto.tipo_producto != Tipo_producto.CONTROL_PLAGAS:
             raise TypeError("El producto debe ser de tipo Control de Plagas")
-        super().__init__(producto.nombre_producto, producto.registro_ICA, producto.frecuencia_aplicacion, 
-                         producto.dosis, producto.concentracion, producto.tipo_producto, producto.valor_producto)
+        
+        super().__init__(producto.nombre_producto, 
+                         producto.registro_ICA, 
+                         producto.frecuencia_aplicacion, 
+                         producto.dosis, 
+                         producto.concentracion, 
+                         producto.tipo_producto, 
+                         producto.valor_producto)
+        
         self.__periodo_carencia = periodo_carencia
         self.__area_aplicacion: float = 0.0
 
@@ -33,4 +42,6 @@ class Control_Plagas(Producto):
         self.__area_aplicacion = valor
     
     def calcular_dosis(self):
-        return self.dosis * self.__area_aplicacion
+        if self.__area_aplicacion <= 0:
+            raise ValueError("El área tratada debe ser mayor a 0")
+        return (self.dosis * self.__area_aplicacion) / self.concentracion

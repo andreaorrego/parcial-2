@@ -1,3 +1,5 @@
+import sys, os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from dataclasses import dataclass
 from Model.constantes import Tipo_producto, Frecuencia_aplicacion
 
@@ -74,7 +76,8 @@ class Producto:
         if valor not in [
             Tipo_producto.ANTIBIOTICO,
             Tipo_producto.CONTROL_PLAGAS,
-            Tipo_producto.CONTROL_FERTILIZANTES
+            Tipo_producto.CONTROL_FERTILIZANTES,
+            Tipo_producto.VACUNA
         ]:
             raise ValueError("Tipo de producto no válido")
         self.__tipo_producto = valor
@@ -85,7 +88,7 @@ class Producto:
     
     @valor_producto.setter
     def valor_producto(self, valor):
-        if valor < 0:
+        if valor <= 0:
             raise ValueError("El valor del producto no puede ser negativo")
         self.__valor_producto = valor
 
