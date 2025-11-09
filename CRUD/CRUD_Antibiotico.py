@@ -6,22 +6,20 @@ from Model.antibiotico import Antibiotico
 
 class CRUD_Antibiotico:
     def __init__(self):
-        self.antibioticos = []
+        self.__antibioticos = []
 
     def crear_antibiotico(self, producto: Producto):
         if producto.tipo_producto != Tipo_producto.ANTIBIOTICO:
-            print("El producto no es un antibiótico.")
             return None
         antibiotico = Antibiotico(producto)
-        self.antibioticos.append(antibiotico)
+        self.__antibioticos.append(antibiotico)
         return antibiotico
 
-
     def leer_antibioticos(self):
-        return self.antibioticos
+        return self.__antibioticos
     
     def buscar_antibiotico(self, nombre_producto: str):
-        for antibiotico in self.antibioticos:
+        for antibiotico in self.__antibioticos:
             if antibiotico.nombre_producto == nombre_producto:
                 return antibiotico
         return None
@@ -39,6 +37,6 @@ class CRUD_Antibiotico:
     def eliminar_antibiotico(self, nombre_producto: str):
         antibiotico = self.buscar_antibiotico(nombre_producto)
         if antibiotico:
-            self.antibioticos.remove(antibiotico)
+            self.__antibioticos.remove(antibiotico)
             return True
         return False

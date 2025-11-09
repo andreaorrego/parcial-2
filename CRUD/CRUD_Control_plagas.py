@@ -1,6 +1,7 @@
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from Model.producto import Producto, Tipo_producto
+from Model.producto import Producto
+from Model.constantes import Tipo_producto
 from Model.control_plagas import Control_Plagas
 
 class CRUD_Control_Plagas:

@@ -77,7 +77,6 @@ class Producto:
             Tipo_producto.ANTIBIOTICO,
             Tipo_producto.CONTROL_PLAGAS,
             Tipo_producto.CONTROL_FERTILIZANTES,
-            Tipo_producto.VACUNA
         ]:
             raise ValueError("Tipo de producto no válido")
         self.__tipo_producto = valor

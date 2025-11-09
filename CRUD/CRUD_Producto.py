@@ -1,16 +1,27 @@
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from dataclasses import dataclass
 from Model.producto import Producto
 
 class CRUD_Producto:
     def __init__(self):
         self.__productos = []
 
-    def crear_producto(self, nombre_producto, registro_ICA, frecuencia_aplicacion, dosis, 
-                       concentracion, tipo_producto, valor_producto):
-        producto = Producto(nombre_producto, registro_ICA, frecuencia_aplicacion, dosis, 
-                           concentracion, tipo_producto, valor_producto)
+    def crear_producto(self, nombre_producto, 
+                       registro_ICA, 
+                       frecuencia_aplicacion, 
+                       dosis, 
+                       concentracion, 
+                       tipo_producto, 
+                       valor_producto):
+        
+        producto = Producto(nombre_producto, 
+                            registro_ICA, 
+                            frecuencia_aplicacion, 
+                            dosis, 
+                           concentracion, 
+                           tipo_producto, 
+                           valor_producto)
+        
         self.__productos.append(producto)
         return producto
 

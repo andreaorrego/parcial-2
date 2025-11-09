@@ -2,7 +2,6 @@ class Tipo_producto:
     ANTIBIOTICO = "Antibiotico"
     CONTROL_PLAGAS = "Control de Plagas"
     CONTROL_FERTILIZANTES = "Control de Fertilizantes"
-    VACUNA = "Vacuna"
     
 class Frecuencia_aplicacion:
     UNICA = "Única vez"
